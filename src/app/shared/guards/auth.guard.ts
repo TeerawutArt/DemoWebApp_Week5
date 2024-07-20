@@ -7,7 +7,7 @@ export const authGuard: CanActivateFn = async (route, state) => {
   const rt = inject(Router);
   const res = await acs.isUserAuthenticated();
   if (res == false) {
-    rt.navigate(['/account/login'], { queryParams: { returnURL: state.url } }); //state คือ อยู่ที่ไหนตอนกดห
+    rt.navigate(['/account/login'], { queryParams: { returnURL: state.url } }); //state คือ อยู่ที่ไหนตอนเข้าหน้านี้
     return false;
   }
   return true;

@@ -9,6 +9,7 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { AccountForgotPasswordComponent } from './account-forgot-password/account-forgot-password.component';
 import { AccountResetPasswordComponent } from './account-reset-password/account-reset-password.component';
 import { authGuard } from './shared/guards/auth.guard';
+import { sellerGuard } from './shared/guards/seller.guard';
 
 export const routes: Routes = [
   {
@@ -29,7 +30,7 @@ export const routes: Routes = [
         path: 'new',
         title: 'New Product',
         component: ProductNewComponent,
-        canActivate: [authGuard],
+        canActivate: [authGuard, sellerGuard],
       },
     ],
   },

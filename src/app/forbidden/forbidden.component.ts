@@ -6,14 +6,14 @@ import { ActivatedRoute } from '@angular/router';
   standalone: true,
   imports: [],
   templateUrl: './forbidden.component.html',
-  styleUrl: './forbidden.component.css'
+  styleUrl: './forbidden.component.css',
 })
 export class ForbiddenComponent implements OnInit {
-  returnUrl = '';
+  returnURL = '';
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnURL = this.route.snapshot.queryParams['returnURL'] || '/';
   }
 }
