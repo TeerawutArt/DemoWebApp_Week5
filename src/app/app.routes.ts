@@ -23,7 +23,7 @@ export const routes: Routes = [
         path: 'list',
         title: 'All Products',
         component: ProductListComponent,
-        canActivate: [authGuard], //canActiveGuard :authGuard
+        canActivate: [authGuard], //GuardType :GuardName
       },
       {
         path: 'new',
