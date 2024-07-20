@@ -88,7 +88,7 @@ export class AccountLoginUserComponent implements OnInit {
         this.messageService.add({
           severity: 'error',
           summary: 'Login Failed',
-          detail: err.error.errors[0],
+          detail: err.message,
           sticky: true,
         });
         this.isProcessing = false;

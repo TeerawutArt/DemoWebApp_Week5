@@ -7,11 +7,12 @@ import { TitleStrategy, provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { PageTitleStrategy } from './shared/strategies/page-title.strategy';
 // prettier-ignore
-import {provideHttpClient,withInterceptorsFromDi,} from '@angular/common/http';
+import {provideHttpClient,withInterceptors,withInterceptorsFromDi,} from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { JwtModule } from '@auth0/angular-jwt';
 import { authKey } from './shared/services/account.service';
 import { environment } from '../environments/environment.development';
+import { errorInterceptor } from './shared/interceptors/error.interceptor';
 
 export function tokenGetter() {
   return localStorage.getItem(authKey.accessToken);
@@ -29,7 +30,10 @@ export const appConfig: ApplicationConfig = {
       })
     ),
     provideAnimationsAsync(),
-    provideHttpClient(withInterceptorsFromDi()), //auth0
+    provideHttpClient(
+      withInterceptors([errorInterceptor]), //register Interceptor
+      withInterceptorsFromDi() //auth0
+    ),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     { provide: TitleStrategy, useClass: PageTitleStrategy },

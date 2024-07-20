@@ -105,8 +105,8 @@ export class AccountRegisterUserComponent implements OnInit {
         this.registerForm.enable();
         this.msgs.add({
           severity: 'error',
-          summary: 'Login Failed',
-          detail: err.error.errors[0],
+          summary: 'Register Failed',
+          detail: err.message,
           sticky: true,
         });
       },
