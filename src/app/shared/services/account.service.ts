@@ -104,4 +104,13 @@ export class AccountService {
     }
     return roles && roles == role; //TRUE and TRUE return FirstTrue
   }
+  getUserName() {
+    const at = localStorage.getItem(authKey.accessToken);
+    if (at == null) {
+      return false;
+    }
+    const decodeToken = this.jwtService.decodeToken(at);
+    const userName = decodeToken['name'];
+    return userName;
+  }
 }

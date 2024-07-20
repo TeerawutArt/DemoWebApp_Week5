@@ -75,15 +75,15 @@
                 }
             </div>
             <div class="field col-12 mt-3 text-center">
-                <button pButton type="submit" label="Submit" [disabled]="registerForm.invalid"
-                    class="w-full md:w-4"></button>
+                <button pButton type="submit" label="Submit" [disabled]="registerForm.invalid" class="w-full md:w-4"
+                    [loading]="isProcessing"></button>
             </div>
         </div>
     </form>
 
     <ng-template pTemplate="footer">
         <div class="text-right">
-            <span><a href="#">Already have an account?</a></span>
+            <span><a [href]="'/account/login?returnURL=' + returnURL">Already have an account?</a></span>
         </div>
     </ng-template>
 </p-card>

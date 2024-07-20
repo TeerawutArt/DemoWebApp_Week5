@@ -15,6 +15,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class HeaderComponent implements OnInit {
   isUserLoggedIn = false;
+  userName = '';
 
   items!: MenuItem[];
 
@@ -26,6 +27,7 @@ export class HeaderComponent implements OnInit {
   ) {
     accountService.authChanged.subscribe((res) => {
       this.isUserLoggedIn = res;
+      this.userName = this.accountService.getUserName();
     });
   }
 
