@@ -92,4 +92,16 @@ export class AccountService {
   notifyAuthChanged(isUserAuthenticated: boolean) {
     this.authChangeSub.next(isUserAuthenticated); //ส่งค่าไปให้ obj authChangeSub เพิ่อให้ component อื่นใช้งาน
   }
+  isUserInRole(role: string) {
+    const at = localStorage.getItem(authKey.accessToken);
+    if (at == null) {
+      return false;
+    }
+    const decodeToken = this.jwtService.decodeToken(at);
+    const roles = decodeToken['role'];
+    if (roles && roles instanceof Array) {
+      return roles.findIndex((v) => v == role) >= 0;
+    }
+    return roles && roles == role; //TRUE and TRUE return FirstTrue
+  }
 }
