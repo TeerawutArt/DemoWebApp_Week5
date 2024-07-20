@@ -1,0 +1,18 @@
+<header class="fixed top-0 w-full">
+    <p-menubar [model]="items">
+        <ng-template pTemplate="start">
+            <a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page" class="mr-2"><img
+                    src="favicon.ico" height="32px"></a>
+        </ng-template>
+
+        <ng-template pTemplate="end">
+            @if (isUserLoggedIn) {
+            <p-button label="Log out" [link]="true" (onClick)="logout()" />
+            }
+            @else{
+            <p-button label="Log in" [link]="true" (onClick)="gotoLogin()" />
+            }
+
+        </ng-template>
+    </p-menubar>
+</header>
