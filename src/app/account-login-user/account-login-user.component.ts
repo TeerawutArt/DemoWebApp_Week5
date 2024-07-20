@@ -5,7 +5,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -33,11 +33,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class AccountLoginUserComponent implements OnInit {
   loginForm!: FormGroup;
   isProcessing = false;
+  returnURL = '';
 
   constructor(
     private router: Router,
     private messageService: MessageService,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private ar: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -45,6 +47,7 @@ export class AccountLoginUserComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
     });
+    this.returnURL = this.ar.snapshot.queryParams['returnURL'] || '/';
   }
 
   validateControl(controlName: string) {
@@ -79,7 +82,7 @@ export class AccountLoginUserComponent implements OnInit {
           detail: 'Nice to see you.',
         });
 
-        this.router.navigate(['/']);
+        this.router.navigate([this.returnURL]);
       },
       error: (err: HttpErrorResponse) => {
         this.messageService.add({
